@@ -1,24 +1,7 @@
-# README
+# es2015_on_rails_using_browserify
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Integrating ES2015, JSX and modern Javascript tools in our Rails app using `browserify-rails` and `teaspoon`.
 
-Things you may want to cover:
+## References
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [MODERN JAVASCRIPT AND RAILS](http://collectiveidea.com/blog/archives/2016/03/09/modern-javascript-and-rails/)
