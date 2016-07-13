@@ -38,10 +38,10 @@ group :development, :test do
 
   # Your choice of test library.
   # teaspoon-jasmine, teaspoon-mocha / teaspoon-qunit
-  gem "teaspoon-mocha"
+  gem 'teaspoon-mocha'
 
   # Teaspoon's front-end is written in CoffeeScript but it's not a dependency.
-  gem "coffee-script"
+  gem 'coffee-script'
 end
 
 group :development do

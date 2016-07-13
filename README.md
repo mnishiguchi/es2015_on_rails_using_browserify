@@ -5,9 +5,7 @@ Integrating ES2015, JSX and modern Javascript tools in our Rails app using `brow
 [browserify-rails](https://github.com/browserify-rails/browserify-rails)
 
 
-#### Add `browserify-rails` gem to Gemfile
-
-`Gemfile`
+#### Gemfile
 
 ```rb
 gem "browserify-rails"
@@ -39,6 +37,59 @@ or
 
 ```bash
 $ npm install browserify browserify-incremental babelify babel-preset-es2015 --save
+```
+
+---
+
+## Testing JS with [Teaspoon](https://github.com/modeset/teaspoon)
+
+#### Gemfile
+
+```rb
+group :development, :test do
+    # teaspoon-jasmine, teaspoon-mocha or teaspoon-qunit
+    gem "teaspoon-mocha"
+
+    # Teaspoon's front-end is written in CoffeeScript but it's not a dependency
+    gem "coffee-script"
+end
+```
+
+#### Configure `teaspoon`
+
+`config/application.rb`
+
+```rb
+unless Rails.env.production?
+    # Work around sprockets+teaspoon mismatch:
+    Rails.application.config.assets.precompile += %w(spec_helper.js)
+
+    # Make sure Browserify is triggered when
+    # asked to serve javascript spec files
+    config.browserify_rails.paths << lambda { |p|
+        p.start_with?(Rails.root.join("spec/javascripts").to_s)
+    }
+end
+```
+
+#### Set up Teaspoon for Mocha
+
+- [Teaspoon-Using-Mocha](https://github.com/modeset/teaspoon/wiki/Using-Mocha)
+
+#### Install Teaspoon
+
+```bash
+$ bundle exec rails g teaspoon:install
+```
+
+#### Write test
+
+- Do it in `spec/javascripts/*_spec.js` files.
+
+#### Run test
+
+```bash
+$ rake teaspoon
 ```
 
 ---
